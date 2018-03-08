@@ -1,4 +1,4 @@
-# SrollTriger
+# ScrollTrigger
 SrollTrigger is a piece of code using jquery to determine a point in the page which when it arrives trigger anything which you want
 
 ## Dependencies
