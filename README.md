@@ -12,14 +12,22 @@ const config = {
   respire: <pixel-without-px>, // 100 = 100px
 };
 
-triggerElement(
+function doSomethingNice() {
+  [...]
+}
+
+function doSomethingBad() {
+  [...]
+}
+
+scrollTrigger(
   config,
-  () => console.log('Trigger'),
-  () => $box.removeClass('Trigger exception'),
+  () => doSomethingNice(), // main function
+  () => doSomethingBad(),
 );
 ```
 
-When you specify just START the function is invoked when arriving in this div and will be always execute in this div to down.
+When you specify just START the function `doSomethingNice` is invoked when arriving in this div and will be always execute in this div to down.
 
 ```
 const config = {
@@ -27,7 +35,7 @@ const config = {
 };
 ```
 
-When you specify START and END the first function it will be fired between of this two DIVS and the second function (exception) is invoked outside of this divs.
+When you specify START and END the `doSomethingNice` function it will be fired between of this two DIVS and the function `doSomethingBad` is invoked outside of this divs.
 ```
 const config = {
   start: '#start',
@@ -35,7 +43,7 @@ const config = {
 }
 ```
 
-Respire: is the anticipation to invoke the first function of parameters. This is invoked 100px before
+Respire: is the anticipation to invoke the first `doSomethingNice`. This is invoked 100px before
 ```
 const config = {
   start: '#start',
