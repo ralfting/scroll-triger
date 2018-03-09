@@ -1,6 +1,12 @@
 import $ from 'jquery';
 
-function init({ start, end, respire = 0 }, fn, exceptFn) {
+function init({
+  start,
+  end,
+  respire = 0,
+}, fn, exceptFn) {
+  const windowHeight = $(window).height();
+
   const $start = $(start);
   const $end = $(end);
 
@@ -8,19 +14,16 @@ function init({ start, end, respire = 0 }, fn, exceptFn) {
   const heightStart = $start.outerHeight();
 
   let topOfDivEnd;
-  let heightEnd;
 
-  if (end !== undefined) {
+  if (end !== undefined && $end.length > 0) {
     topOfDivEnd = $end.offset().top;
-    heightEnd = $end.outerHeight();
   }
 
   $(window).scroll(() => {
-    const isStart = $(window).scrollTop() > (topOfDivStart + (heightStart - respire));
-    let isNotEnd;
+    const isStart = $(window).scrollTop() > ((topOfDivStart - windowHeight) + (heightStart - respire));
 
-    if (end !== undefined) {
-      isNotEnd = $(window).scrollTop() <= (topOfDivEnd + heightEnd);
+    if (end !== undefined && $end.length > 0) {
+      const isNotEnd = $(window).scrollTop() <= ((topOfDivEnd) - windowHeight);
 
       return (isStart && isNotEnd) ? fn() : exceptFn();
     }
